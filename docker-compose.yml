@@ -1,0 +1,17 @@
+services:
+  ros2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ros2_playground
+    volumes:
+      - type: bind
+        source: "./mobile_4wd"
+        target: "/workspace/mobile_4wd"
+    ports:
+      - "6080:80"
+    environment:
+      - ROS_DOMAIN_ID=1
+    security_opt:
+      - seccomp:unconfined
+    shm_size: '512m'
